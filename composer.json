@@ -1,0 +1,22 @@
+{
+    "name": "mahmut/meteoroloji-hava-durumu",
+    "description": "Meteoroloji Genel Müdürlüğü Hava Durumu Api",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "ext-json": "*",
+        "netresearch/jsonmapper": "^4.0"
+    },
+    "authors": [
+        {
+            "name": "Mahmut Özdemir",
+            "email": "bilgi@mahmutozdemir.com.tr",
+            "homepage": "http://www.mahmutozdemir.com.tr"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Meteoroloji\\": "src/"
+        }
+    }
+}
