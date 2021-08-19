@@ -17,6 +17,7 @@ spl_autoload_register(function($class) {
 try {
     $weather = new \Meteoroloji\Weather('ankara');
     $result = $weather
+        ->setLanguage('tr') // ingilizce için 'en' kullanabilirsiniz.
         ->setCachePath(__DIR__ . '/cache/')
         ->cache(true)
         ->fetch();

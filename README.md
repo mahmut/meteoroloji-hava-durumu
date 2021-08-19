@@ -1,4 +1,4 @@
-# Meteoroloji Genel Müdürlüğü Hava Durumu Api
+# Meteoroloji Genel Müdürlüğü Hava Durumu Apisi
 
 İl, ilçe adına göre meteoroloji genel müdürlüğünden istasyon bilgileri, gün doğumu, gün batımı, günlük hava durumu ve 5 günlük hava tahminleri listesini kolayca alabilirsiniz. 
 
@@ -16,6 +16,7 @@ $city = 'ankara';
 try {
     $weather = new \Meteoroloji\Weather('ankara');
     $result = $weather
+        ->setLanguage('tr') // ingilizce için 'en' kullanabilirsiniz.
         ->setCachePath(__DIR__ . '/cache/')
         ->cache(true)
         ->fetch();
