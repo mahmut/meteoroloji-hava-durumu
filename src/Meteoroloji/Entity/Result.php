@@ -1,9 +1,8 @@
 <?php
 /**
- * ----------------------------------------
- * author : [not]
- * web    : [not]
- * email  : [not]
+ * author : Mahmut Özdemir
+ * web    : www.mahmutozdemir.com.tr
+ * email  : bilgi@mahmutozdemir.com.tr
  * ----------------------------------------
  * Date   : 2021-08-19 22:51
  * File   : Result.php
