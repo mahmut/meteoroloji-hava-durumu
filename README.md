@@ -43,19 +43,19 @@ Meteoroloji\Entity\Result Object
     [station] => Meteoroloji\Entity\Station Object
         (
             [city] => Ankara
-            [town] => Keçiören
-            [centerId] => 90601
-            [latitude] => 39.9727
-            [longitude] => 32.8637
-            [altitude] => 891
-            [sunrise] => 06:04
-            [sunset] => 19:39
+            [town] => Çankaya
+            [centerId] => 90614
+            [latitude] => 39.9075
+            [longitude] => 32.8494
+            [altitude] => 927
+            [sunrise] => 06:08
+            [sunset] => 19:33
         )
 
     [current] => Meteoroloji\Entity\Current Object
         (
-            [date] => 19.08.2021 19:58
-            [stationNumber] => 17130
+            [date] => 23.08.2021 21:46
+            [stationNumber] => 18046
             [condition] => Meteoroloji\Entity\Condition Object
                 (
                     [code] => A
@@ -63,95 +63,23 @@ Meteoroloji\Entity\Result Object
                     [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/A.svg
                 )
 
-            [temp] => 22.3
-            [humidity] => 42
-            [windDirection] => 25
-            [windSpeed] => 4.68
-            [pressure] => 910.7
-            [seaLevelPressure] => 1005.7
-            [sight] => 20000
+            [temp] => 20.1
+            [humidity] => 58
+            [windDirection] => 7
+            [windSpeed] => 2.16
+            [pressure] => 908.8
+            [seaLevelPressure] => 1008.1
+            [sight] => 33020
         )
 
     [forecasts] => Array
         (
             [0] => Meteoroloji\Entity\Forecast Object
                 (
-                    [date] => 20.08.2021
-                    [lowest] => 16
-                    [highest] => 31
-                    [lowestHumidity] => 24
-                    [highestHumidity] => 86
-                    [condition] => Meteoroloji\Entity\Condition Object
-                        (
-                            [code] => AB
-                            [name] => Az Bulutlu
-                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/AB.svg
-                        )
-
-                    [windSpeed] => 13
-                    [windDirection] => 30
-                )
-
-            [1] => Meteoroloji\Entity\Forecast Object
-                (
-                    [date] => 21.08.2021
-                    [lowest] => 17
-                    [highest] => 32
-                    [lowestHumidity] => 18
-                    [highestHumidity] => 84
-                    [condition] => Meteoroloji\Entity\Condition Object
-                        (
-                            [code] => AB
-                            [name] => Az Bulutlu
-                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/AB.svg
-                        )
-
-                    [windSpeed] => 11
-                    [windDirection] => 34
-                )
-
-            [2] => Meteoroloji\Entity\Forecast Object
-                (
-                    [date] => 22.08.2021
-                    [lowest] => 18
-                    [highest] => 32
-                    [lowestHumidity] => 19
-                    [highestHumidity] => 77
-                    [condition] => Meteoroloji\Entity\Condition Object
-                        (
-                            [code] => PB
-                            [name] => Parçalı Bulutlu
-                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/PB.svg
-                        )
-
-                    [windSpeed] => 17
-                    [windDirection] => 4
-                )
-
-            [3] => Meteoroloji\Entity\Forecast Object
-                (
-                    [date] => 23.08.2021
-                    [lowest] => 19
-                    [highest] => 30
-                    [lowestHumidity] => 24
-                    [highestHumidity] => 73
-                    [condition] => Meteoroloji\Entity\Condition Object
-                        (
-                            [code] => PB
-                            [name] => Parçalı Bulutlu
-                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/PB.svg
-                        )
-
-                    [windSpeed] => 17
-                    [windDirection] => 57
-                )
-
-            [4] => Meteoroloji\Entity\Forecast Object
-                (
                     [date] => 24.08.2021
-                    [lowest] => 18
+                    [lowest] => 15
                     [highest] => 31
-                    [lowestHumidity] => 19
+                    [lowestHumidity] => 17
                     [highestHumidity] => 82
                     [condition] => Meteoroloji\Entity\Condition Object
                         (
@@ -160,8 +88,80 @@ Meteoroloji\Entity\Result Object
                             [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/AB.svg
                         )
 
-                    [windSpeed] => 18
-                    [windDirection] => 66
+                    [windSpeed] => 12
+                    [windDirection] => 70
+                )
+
+            [1] => Meteoroloji\Entity\Forecast Object
+                (
+                    [date] => 25.08.2021
+                    [lowest] => 16
+                    [highest] => 34
+                    [lowestHumidity] => 15
+                    [highestHumidity] => 73
+                    [condition] => Meteoroloji\Entity\Condition Object
+                        (
+                            [code] => PB
+                            [name] => Parçalı Bulutlu
+                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/PB.svg
+                        )
+
+                    [windSpeed] => 10
+                    [windDirection] => 308
+                )
+
+            [2] => Meteoroloji\Entity\Forecast Object
+                (
+                    [date] => 26.08.2021
+                    [lowest] => 19
+                    [highest] => 34
+                    [lowestHumidity] => 18
+                    [highestHumidity] => 44
+                    [condition] => Meteoroloji\Entity\Condition Object
+                        (
+                            [code] => AB
+                            [name] => Az Bulutlu
+                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/AB.svg
+                        )
+
+                    [windSpeed] => 14
+                    [windDirection] => 249
+                )
+
+            [3] => Meteoroloji\Entity\Forecast Object
+                (
+                    [date] => 27.08.2021
+                    [lowest] => 20
+                    [highest] => 34
+                    [lowestHumidity] => 15
+                    [highestHumidity] => 63
+                    [condition] => Meteoroloji\Entity\Condition Object
+                        (
+                            [code] => AB
+                            [name] => Az Bulutlu
+                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/AB.svg
+                        )
+
+                    [windSpeed] => 11
+                    [windDirection] => 293
+                )
+
+            [4] => Meteoroloji\Entity\Forecast Object
+                (
+                    [date] => 28.08.2021
+                    [lowest] => 18
+                    [highest] => 35
+                    [lowestHumidity] => 16
+                    [highestHumidity] => 64
+                    [condition] => Meteoroloji\Entity\Condition Object
+                        (
+                            [code] => SCK
+                            [name] => Sıcak
+                            [icon] => https://mgm.gov.tr/Images_Sys/hadiseler/SCK.svg
+                        )
+
+                    [windSpeed] => 10
+                    [windDirection] => 70
                 )
 
         )
