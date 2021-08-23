@@ -11,10 +11,12 @@ composer require mahmut/meteoroloji-hava-durumu
 ```php
 // şehir adı
 $city = 'ankara';
+// ilçe adı
+$town = 'cankaya'; // boş bırakılabilir
 
 // hava durumunu getir
 try {
-    $weather = new \Meteoroloji\Weather('ankara');
+    $weather = new \Meteoroloji\Weather($city, $town);
     $result = $weather
         ->setLanguage('tr') // ingilizce için 'en' kullanabilirsiniz.
         ->setCachePath(__DIR__ . '/cache/')
