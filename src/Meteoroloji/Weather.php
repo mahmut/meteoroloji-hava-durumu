@@ -63,9 +63,18 @@ class Weather {
     protected $cacheLifetime = 30;
 
     /**
+     * city name
+     *
      * @var string
      */
     protected $city;
+
+    /**
+     * town name
+     *
+     * @var String
+     */
+    protected $town;
 
     /**
      * @var Station
@@ -84,11 +93,14 @@ class Weather {
 
     /**
      * Weather constructor.
+     *
      * @param $city
+     * @param null $town
      */
-    public function __construct($city)
+    public function __construct($city, $town = null)
     {
         $this->city = $city;
+        $this->town = $town;
 
         // init client
         $this->client = new Client([
@@ -122,8 +134,13 @@ class Weather {
     private function fetchStation(): Weather
     {
         try {
+            $query = ['il' => $this->clean($this->city)];
+            if($this->town){
+                $query['ilce'] = $this->clean($this->town);
+            }
+
             $response = $this->client->get('merkezler', [
-                'query' => ['il' => $this->clean($this->city)]
+                'query' => $query
             ]);
 
             $response = json_decode($response->getBody()->getContents());
@@ -215,7 +232,7 @@ class Weather {
      */
     public function fetch(): Result
     {
-        $cacheKey = 'weather-'.$this->clean($this->city).'-'.$this->language;
+        $cacheKey = 'weather-'.$this->clean($this->city).'-'.$this->clean($this->town).'-'.$this->language;
         if($this->cache && $result = $this->readCache($cacheKey)){
             return $result;
         }
