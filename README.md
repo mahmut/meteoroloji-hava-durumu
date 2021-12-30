@@ -9,14 +9,25 @@ composer require mahmut/meteoroloji-hava-durumu
 
 ## Örnek
 ```php
-// şehir adı
-$city = 'ankara';
-// ilçe adı
-$town = 'cankaya'; // boş bırakılabilir
 
 // hava durumunu getir
 try {
-    $weather = new \Meteoroloji\Weather($city, $town);
+
+    $station = new \Meteoroloji\Entity\Station();
+    // şehir adı
+    $station->city = 'ankara';
+    // ilçe adı - boş bırakılabilir
+    $station->town = 'cankaya';
+    
+    // konuma göre havadurumu getirilecekse
+    // enlem
+    $station->latitude = 39.903;
+    // boylam
+    $station->longitude = 32.809;
+    
+    // konuma göre havadurumu bulunması için : \Meteoroloji\Entity\StationType::Location
+    // il/ilçeye göre havadurumu bulunması için : \Meteoroloji\Entity\StationType::City
+    $weather = new \Meteoroloji\Weather($station, \Meteoroloji\Entity\StationType::City);
     $result = $weather
         ->setLanguage('tr') // ingilizce için 'en' kullanabilirsiniz.
         ->setCachePath(__DIR__ . '/cache/')
