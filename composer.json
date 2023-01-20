@@ -3,9 +3,9 @@
     "description": "Meteoroloji Genel Müdürlüğü Hava Durumu Api",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": ">6.3",
         "ext-json": "*",
-        "netresearch/jsonmapper": "^4.0"
+        "netresearch/jsonmapper": ">4.0"
     },
     "authors": [
         {
