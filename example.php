@@ -15,7 +15,14 @@ spl_autoload_register(function($class) {
 });
 
 try {
-    $weather = new \Meteoroloji\Weather('ankara');
+
+    $station = new \Meteoroloji\Entity\Station();
+    $station->city = 'ankara';
+    $station->town = 'yenimahalle';
+    $station->latitude = 39.903;
+    $station->longitude = 32.809;
+
+    $weather = new \Meteoroloji\Weather($station, \Meteoroloji\Entity\StationType::City);
     $result = $weather
         ->setLanguage('tr') // ingilizce için 'en' kullanabilirsiniz.
         ->setCachePath(__DIR__ . '/cache/')

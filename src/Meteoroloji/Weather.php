@@ -17,6 +17,7 @@ use Meteoroloji\Entity\Current;
 use Meteoroloji\Entity\Forecast;
 use Meteoroloji\Entity\Result;
 use Meteoroloji\Entity\Station;
+use Meteoroloji\Entity\StationType;
 use Meteoroloji\Exception\CurrentNotFoundException;
 use Meteoroloji\Exception\Exception;
 use Meteoroloji\Exception\ForecastNotFoundException;
@@ -65,7 +66,7 @@ class Weather {
     /**
      * @var string
      */
-    protected $city;
+    protected $stationType;
 
     /**
      * @var Station
@@ -83,12 +84,15 @@ class Weather {
     protected $forecasts = [];
 
     /**
-     * Weather constructor.
-     * @param $city
+     * Weather construct
+     *
+     * @param Station $station
+     * @param string $stationType
      */
-    public function __construct($city)
+    public function __construct(Station $station, string $stationType = StationType::City)
     {
-        $this->city = $city;
+        $this->station = $station;
+        $this->stationType = $stationType;
 
         // init client
         $this->client = new Client([
@@ -121,9 +125,29 @@ class Weather {
      */
     private function fetchStation(): Weather
     {
+        if($this->stationType == StationType::Location){
+            return $this->fetchStationByLocation();
+        } else {
+            return $this->fetchStationByCity();
+        }
+    }
+
+    /**
+     * fetch station by city
+     *
+     * @return $this
+     * @throws StationNotFoundException
+     */
+    private function fetchStationByCity(): Weather
+    {
         try {
+            $query = ['il' => $this->clean($this->station->city)];
+            if($this->station->town){
+                $query['ilce'] = $this->clean($this->station->town);
+            }
+
             $response = $this->client->get('merkezler', [
-                'query' => ['il' => $this->clean($this->city)]
+                'query' => $query
             ]);
 
             $response = json_decode($response->getBody()->getContents());
@@ -132,6 +156,36 @@ class Weather {
             }
 
             $this->station = Station::createFromJson($response[0]);
+
+        } catch (ClientException $e) {
+            throw new StationNotFoundException($e->getMessage());
+        }
+
+        return $this;
+    }
+
+    /**
+     * fetch station by location
+     *
+     * @return $this
+     * @throws StationNotFoundException
+     */
+    private function fetchStationByLocation(): Weather
+    {
+        try {
+            $response = $this->client->get('merkezler/lokasyon', [
+                'query' => [
+                    'enlem' => $this->station->latitude,
+                    'boylam' => $this->station->longitude
+                ]
+            ]);
+
+            $response = json_decode($response->getBody()->getContents());
+            if(!$response) {
+                throw new StationNotFoundException();
+            }
+
+            $this->station = Station::createFromJson($response);
 
         } catch (ClientException $e) {
             throw new StationNotFoundException($e->getMessage());
@@ -215,7 +269,12 @@ class Weather {
      */
     public function fetch(): Result
     {
-        $cacheKey = 'weather-'.$this->clean($this->city).'-'.$this->language;
+        if($this->stationType == StationType::Location){
+            $cacheKey = 'weather-'.$this->clean($this->station->latitude).'-'.$this->clean($this->station->longitude).'-'.$this->language;
+        } else {
+            $cacheKey = 'weather-'.$this->clean($this->station->city).'-'.$this->clean($this->station->town).'-'.$this->language;
+        }
+
         if($this->cache && $result = $this->readCache($cacheKey)){
             return $result;
         }
@@ -228,6 +287,7 @@ class Weather {
         $result->station = $this->station;
         $result->current = $this->current;
         $result->forecasts = $this->forecasts;
+
 
         if($this->cache){
             $this->writeCache($cacheKey, $result);
@@ -332,6 +392,78 @@ class Weather {
     public function setLanguage(string $language): Weather
     {
         $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return Weather
+     */
+    public function setCity(string $city): Weather
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return String
+     */
+    public function getTown(): string
+    {
+        return $this->town;
+    }
+
+    /**
+     * @param String $town
+     * @return Weather
+     */
+    public function setTown(string $town): Weather
+    {
+        $this->town = $town;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLatitude(): float
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param float $latitude
+     * @return Weather
+     */
+    public function setLatitude(float $latitude): Weather
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLongitude(): float
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param float $longitude
+     * @return Weather
+     */
+    public function setLongitude(float $longitude): Weather
+    {
+        $this->longitude = $longitude;
         return $this;
     }
 }
